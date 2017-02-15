@@ -52,6 +52,16 @@ public final class SeleniumAssert {
 		Assert.assertNotNull("Element " + xpath + " is not present in the DOM.", element);
 	}
 
+	public static void assertElementSizeXpath(Browser browser, String xpath, int expecteds) {
+
+		List<WebElement> elements = browser.findElements(By.xpath(xpath));
+		Assert.assertNotNull("Element " + xpath + " is not present in the DOM.", elements);
+
+		int elementsSize = elements.size();
+		Assert.assertEquals("Element " + xpath + " does not equal \"" + expecteds + "\". Instead it equals \"" +
+			elementsSize + "\".", expecteds, elementsSize);
+	}
+
 	public static void assertElementTextInvisible(Browser browser, String xpath, String text) {
 
 		WebElement element = findFirstElementByXpath(browser, xpath);
